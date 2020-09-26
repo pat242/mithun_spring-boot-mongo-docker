@@ -1,19 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
-    name: springboot
-  name: spring-deployment
+    app: spring-deploy
+  name: spring-deploy
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: spring-deploy
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
-        name: springboot
+        app: spring-deploy
     spec:
       containers:
       - image: pat242/spring-boot-mongo
-        name: springboot
+        name: spring-deploy
         ports:
         - name: springboot
           containerPort: 8080      
@@ -23,33 +29,39 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: springboot
-  name: springboot
+    name: spring-deploy
+  name: spring-servie
 spec:
   type: NodePort
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    name: springboot
+    name: spring-deploy
 ---
 # Mongo host path rc
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   labels:
-    name: mongo
+    app: mongo-deploy
   name: mongo-deploy
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-deploy
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
-        name: mongo
+        app: mongo-deploy
     spec:
       containers:
       - image: mongo
-        name: mongo
+        name: mongo-deploy
         ports:
         - name: mongo
           containerPort: 27017
@@ -67,12 +79,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: mongo
-  name: mongo
+    name: mongo-deploy
+  name: mongo-service
 spec:
   type: ClusterIP
   ports:
     - port: 27017
       targetPort: 27017
   selector:
-    name: mongo
+    name: mongo-deploy
