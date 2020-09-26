@@ -1,9 +1,9 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
     name: springboot
-  name: spring-controller
+  name: spring-deployment
 spec:
   replicas: 1
   template:
@@ -12,7 +12,7 @@ spec:
         name: springboot
     spec:
       containers:
-      - image: bc0071/spring-boot-mongo
+      - image: pat242/spring-boot-mongo
         name: springboot
         ports:
         - name: springboot
@@ -34,12 +34,12 @@ spec:
     name: springboot
 ---
 # Mongo host path rc
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
     name: mongo
-  name: mongo-controller
+  name: mongo-deploy
 spec:
   replicas: 1
   template:
