@@ -37,7 +37,7 @@ spec:
     - port: 8080
       targetPort: 8080
   selector:
-    name: spring-deploy
+    app: spring-deploy
 ---
 # Mongo host path rc
 apiVersion: apps/v1
@@ -87,4 +87,4 @@ spec:
     - port: 27017
       targetPort: 27017
   selector:
-    name: mongo-deploy
+    app: mongo-deploy
