@@ -30,7 +30,7 @@ kind: Service
 metadata:
   labels:
     name: spring-deploy
-  name: spring-servie
+  name: spring-service
 spec:
   type: NodePort
   ports:
