@@ -5,6 +5,7 @@ metadata:
   labels:
     app: spring-deploy
   name: spring-deploy
+  namespace: testing
 spec:
   replicas: 2
   selector:
@@ -31,6 +32,7 @@ metadata:
   labels:
     name: spring-deploy
   name: spring-service
+  namespace: testing
 spec:
   type: NodePort
   ports:
@@ -47,6 +49,7 @@ metadata:
   labels:
     app: mongo-deploy
   name: mongo-deploy
+  namespace: testing
 spec:
   replicas: 1
   selector:
@@ -81,6 +84,7 @@ metadata:
   labels:
     name: mongo-deploy
   name: mongo-service
+  namespace: testing
 spec:
   type: ClusterIP
   ports:
