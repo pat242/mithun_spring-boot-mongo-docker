@@ -34,7 +34,7 @@ pipeline {
         }
         stage("Deploy Application to K8s Cluster"){
             steps{
-                withKubeConfig(credentialsId: 'K8S-KUBECONFIG') {
+                withKubeConfig(credentialsId: 'K8S-KUBECONFIG' ,namespace: 'testing') {
                 sh 'kubectl set image deploy/spring-deploy spring-deploy=${ImageName}:${BUILD_NUMBER}'
 
             }
