@@ -19,7 +19,7 @@ spec:
         app: spring-deploy
     spec:
       containers:
-      - image: pat242/spring-boot-mongo
+      - image: pat242/spring-boot-mongo-testing
         name: spring-deploy
         ports:
         - name: springboot
